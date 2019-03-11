@@ -1,43 +1,56 @@
-import {arrRoutesMd} from '../src/functions/arr.js';
+import {arrRoutesMd,
+  extrackLinks } from '../src/functions/arr.js';
 
 const arrRoutes = [
-  'C:\\Users\\Windows 10\\Desktop\\laboratoria proyectos\\marckDow\\LIM008-fe-md-links\\test\\arr.spec.js',
-  'C:\\Users\\Windows 10\\Desktop\\laboratoria proyectos\\marckDow\\LIM008-fe-md-links\\test\\options.spec.js',
-  'C:\\Users\\Windows 10\\Desktop\\laboratoria proyectos\\marckDow\\LIM008-fe-md-links\\test\\path.spec.js',
-  'C:\\Users\\Windows 10\\Desktop\\laboratoria proyectos\\marckDow\\LIM008-fe-md-links\\test\\testdeprueba\\archivo1.txt',
-  'C:\\Users\\Windows 10\\Desktop\\laboratoria proyectos\\marckDow\\LIM008-fe-md-links\\test\\testdeprueba\\archivo2.txt',
-  'C:\\Users\\Windows 10\\Desktop\\laboratoria proyectos\\marckDow\\LIM008-fe-md-links\\test\\testdeprueba\\archivo5.md',
-  'C:\\Users\\Windows 10\\Desktop\\laboratoria proyectos\\marckDow\\LIM008-fe-md-links\\test\\testdeprueba\\prueba2\\archivo3.md',
-  'C:\\Users\\Windows 10\\Desktop\\laboratoria proyectos\\marckDow\\LIM008-fe-md-links\\test\\testdeprueba\\prueba2\\archivo4.md',
+  `${__dirname}\\arr.spec.js`,
+  `${__dirname}\\options.spec.js`,
+  `${__dirname}\\path.spec.js`,
+  `${__dirname}\\testdeprueba\\archivo1.txt`,
+  `${__dirname}\\testdeprueba\\archivo2.txt`,
+  `${__dirname}\\testdeprueba\\archivo5.md`,
+  `${__dirname}\\testdeprueba\\prueba2\\archivo3.md`,
+  `${__dirname}\\testdeprueba\\prueba2\\archivo4.md`,
 ];
 
 const arrFilterMd = [
-  'C:\\Users\\Windows 10\\Desktop\\laboratoria proyectos\\marckDow\\LIM008-fe-md-links\\test\\testdeprueba\\archivo5.md',
-  'C:\\Users\\Windows 10\\Desktop\\laboratoria proyectos\\marckDow\\LIM008-fe-md-links\\test\\testdeprueba\\prueba2\\archivo3.md',
-  'C:\\Users\\Windows 10\\Desktop\\laboratoria proyectos\\marckDow\\LIM008-fe-md-links\\test\\testdeprueba\\prueba2\\archivo4.md',
+  `${__dirname}\\testdeprueba\\archivo5.md`,
+  `${__dirname}\\testdeprueba\\prueba2\\archivo3.md`,
+  `${__dirname}\\testdeprueba\\prueba2\\archivo4.md`,
 ];
 
+const link = [
+  { href: 'https://github.com/markdown-it/markdown-it',
+    text: 'markdown-it',
+    file:
+      `${__dirname}\\testdeprueba\\archivo5.md`},
+  { href:
+       'https://developer.mozilla.org/es/docs/Web/JavaScript/Guideeee/Regular_Expressions',
+  text: 'expresiones regulares (<code>RegExp</code>)',
+  file:
+      `${__dirname}\\testdeprueba\\archivo5.md`},
+  { href: 'https://es.wikipedia.org/wiki/Markdown',
+    text: 'MarkdownMarkdownMarkdownMarkdownMarkdownMarkdownMa',
+    file:
+      `${__dirname}\\testdeprueba\\prueba2\\archivo3.md`},
+  { href: 'https://es.wikipedia.org/wiki/Markdown',
+    text: 'MarkdownMarkdownMarkdownMarkdownMarkdownMarkdownMa',
+    file:
+         `${__dirname}\\testdeprueba\\prueba2\\archivo3.md`},
+   
+  { href: 'https://docs.npmjs.com/cli/install',
+    text: 'docs oficiales de <code>npm install</code> acá',
+    file:
+      `${__dirname}\\testdeprueba\\prueba2\\archivo4.md`},
+  { href: 'https://giithub.com/Laboratoria/course--parser',
+    text: '<code>course-parser</code>',
+    file:
+      `${__dirname}\\testdeprueba\\prueba2\\archivo4.md`},
+  { href: 'https://es.wikipedia.org/wiki/Markdown',
+    text: 'MarkdownMarkdownMarkdownMarkdownMarkdownMarkdownMa',
+    file:
+         `${__dirname}\\testdeprueba\\prueba2\\archivo4.md`}
+];
 
-// const link = [
-//   { href: 'https://www.draw.io/#',
-//     txt: 'marckdaw',
-//     file: 'C:Users\\Windows 10\\Desktop.md'
-//   },
-//   { href: 'https://claseslaboratoria..cslackom/messages/GGB2GPMA8/convo/CE1RMUN2H-1551216478.015400/',
-//     txt: 'marckdaw',
-//     file: 'C:Users\\Windows 10\\Trueque.md'
-//   },
-// ];
-// const cutLink = [
-//   { href: 'https://www.draw.io/#',
-//     txt: 'marckdaw',
-//     file: 'C:Users\\Windows 10\\Desktop.md'
-//   },
-//   { href: 'https://claseslaboratoria..cslackom/messages/GGB2GP',
-//     txt: 'marckdaw',
-//     file: 'C:Users\\Windows 10\\Trueque.md'
-//   },
-// ];
 
 describe('arrRoutesMd', () => {
   it('deberia ser una funcion', () => {
@@ -53,16 +66,7 @@ describe('extrackLinks', () => {
     expect(typeof extrackLinks).toBe('function');
   });
   it('extrae los links en array de objetos, con las propiedades href, text, file', () => {
-    return expect(extrackLinks(arr)).toBe(link);
+    return expect(extrackLinks(arrFilterMd)).toEqual(link);
   });
 });
-describe('cutLinks', () => {
-  it('deberia ser funcion', () => {
-    expect(typeof cutLinks).toBe('function');
-  });
-  it('recorrer y cortar a 50 caracteres la propiedad href del link   ', () => {
-    return expect(cutLinks(link)).toBe(cutLink);
-  });
-});
-*/  
-  
+

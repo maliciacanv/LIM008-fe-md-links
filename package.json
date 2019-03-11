@@ -9,7 +9,11 @@
     "jest"
   ],
   "license": "MIT",
+  "bin": {
+    "mdLinks": "src/view.functions/cli.js"
+  },
   "scripts": {
+    "build": "babel src -d lib",
     "eslint": "eslint --ext .js src/ test/",
     "test": "jest --coverage"
   },
@@ -25,5 +29,10 @@
     "eslint-plugin-jest": "^22.1.2",
     "jest": "^24.1.0",
     "regenerator-runtime": "^0.13.1"
+  },
+  "dependencies": {
+    "commander": "^2.19.0",
+    "marked": "^0.6.1",
+    "node-fetch": "^2.3.0"
   }
 }
