@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
  * @returns {un array de objetos con los links validades con propiedades satus, statusText} 
  */
 export const validateLink = (arr) => {
-  const linkValidate = arr.map(links => new Promise((resolve, reject) => {
+  const linkValidate = arr.map(links => new Promise((resolve) => {
     return fetch(links.href)                                       
       .then(response => {
         if (response.status >= 200 && response.status < 400) {
@@ -19,7 +19,7 @@ export const validateLink = (arr) => {
         }
       }).catch(() => { 
         links.status = '',
-        links.statusText = 'Not Fail',
+        links.statusText = 'No existe',
         resolve(links);
       });
   }));
@@ -51,7 +51,7 @@ export const totalLinks = (arr) => {
  * @returns {la cantidad de los links rotos} 
  */
 export const brokenLinks = (arr) => {
-  const broken = [arr.filter(link => link.status === '' || link.status === 'Not Found')];
+  const broken = arr.filter(link => link.status === '' || link.status === 'Not Found');
   return broken.length;
 };
 

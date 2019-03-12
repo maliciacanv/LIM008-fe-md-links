@@ -80,11 +80,12 @@ const arrObjLinks = [
 
 
 describe('validateLink', () => {
-  it('deberia retornar una promesa array de objetos con todos los liks validados con propiedades haref,file,text,status,statusText', (done) => {
-    validateLink(links).then((res) => { 
-      expect(res).toEqual(arrObjLinks);
-      done();
-    }).catch(() => done());
+  it('deberia retornar una promesa array de objetos con todos los liks validados con propiedades haref,file,text,status,statusText', () => {
+    return validateLink(links)
+      .then(res => { 
+        expect(validateLink).toEqual(res);
+      })
+      .catch((err) => (err));
   });
 });
 

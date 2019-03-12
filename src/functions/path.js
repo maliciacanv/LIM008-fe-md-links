@@ -11,7 +11,6 @@ export const isPathAbsolute = (route) => {
   return isAbsolute;
 };
 
-// console.log(isPathAbsolute('test\\testdeprueba\\prueba2\\archivo3.md'))
 
 /**
  * @function {para convertir una ruta relativa a una ruta absoluta}
@@ -39,8 +38,9 @@ export const isAdirectory = (route) => {
  * @returns {string}
  */
 export const openAdirectory = (route) => {
+  const directoryAndFile = isAdirectory(route);
   let arrRoutesFiles = [];
-  if (isAdirectory(route) === false) {
+  if (directoryAndFile === false) {
     arrRoutesFiles.push(route);
   } else { 
     const file = fs.readdirSync(route);
@@ -57,4 +57,3 @@ export const openAdirectory = (route) => {
   return arrRoutesFiles;
 };
 
-// console.log(openAdirectory('C:\\Users\\Windows 10\\Desktop\\laboratoria proyectos\\marckDow\\LIM008-fe-md-links\\test'));

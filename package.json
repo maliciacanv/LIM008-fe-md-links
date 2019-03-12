@@ -2,7 +2,7 @@
   "name": "social-network",
   "version": "1.0.0",
   "description": "Social Network @ Laboratoria",
-  "main": "src/index.html",
+  "main": "lib/view.functions/index.js",
   "keywords": [
     "javascript",
     "npm",
@@ -10,7 +10,7 @@
   ],
   "license": "MIT",
   "bin": {
-    "mdLinks": "src/view.functions/cli.js"
+    "md-links": "lib/view.functions/cli.js"
   },
   "scripts": {
     "build": "babel src -d lib",

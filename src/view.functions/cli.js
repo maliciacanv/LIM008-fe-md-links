@@ -1,18 +1,15 @@
 #!/usr/bin/env node
-
-// const [,, ...args] = process.argv;
-// console.log('hello claudia malasquezjaajsjasjsjajsjasjsjajas');
-
-const mdLinks = require('./index.js');
+import { mdLinks } from './index.js';
+import { totalLinks, uniqueLinks, brokenLinks } from '../functions/options.js';
 
 const program = require('commander');
 
 program 
-  . arguments('<path>')
+  . arguments('path')
   . option('-v, --validate', 'validar los links rotos') 
   . option('-s, --stats', 'calcula la stats de los links') 
   . action(mdLinks)
-  . parse(process.argv); 
+  . parse(process.argv);
 
 const option = {
   validate: program.validate,
@@ -23,23 +20,19 @@ const route = program.args[0];
 
 if (!route) {
   console.log('Debes ingresar una ruta');
-} else {
+} else { 
   mdLinks(route, option)
     .then(arrLinks => { 
-      if (arrLinks.length === 0) {
-        console.log('Este archivo no tiene links para mostrar');
-      } else if (option.validate && option.stats) {
-        console.log(`Total: ${arrLinks.total} \nUnique: ${arrLinks.unique} \nBroquen: ${arrLinks.broken}`);
+      if (option.validate && option.stats) {
+        console.log(`Total: ${totalLinks(arrLinks)} \nUnique: ${uniqueLinks(arrLinks)}  \nBroquen: ${brokenLinks(arrLinks)}`);
+      } else if (option.stats) {
+        console.log(`Total: ${totalLinks(arrLinks)}  \nUnique: ${uniqueLinks(arrLinks)}`);
       } else if (option.validate) {
         arrLinks.forEach(element => 
           console.log(`${element.file} ${element.href} ${element.status} ${element.statusText} ${element.text}`));
-      } else if (option.stats) {
-        console.log(`Total: ${arrLinks.total} \nUnique: ${arrLinks.unique}`);
       } else {
         arrLinks.forEach(element => 
           console.log(`${element.file} ${element.href} ${element.text}`));
       }
-    });
-}
-
-
+    }).catch(err => (err));
+};

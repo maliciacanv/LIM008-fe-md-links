@@ -9,6 +9,7 @@ import {
 
 const arrRoutesFile = [
   `${__dirname}\\arr.spec.js`,
+  `${__dirname}\\mdLinks.spec.js`,
   `${__dirname}\\options.spec.js`,
   `${__dirname}\\path.spec.js`,
   `${__dirname}\\testdeprueba\\archivo1.txt`,
