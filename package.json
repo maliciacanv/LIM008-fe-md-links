@@ -1,7 +1,7 @@
 {
-  "name": "social-network",
+  "name": "md-links",
   "version": "1.0.0",
-  "description": "Social Network @ Laboratoria",
+  "description": "markdown @ Laboratoria",
   "main": "lib/view.functions/index.js",
   "keywords": [
     "javascript",
@@ -11,6 +11,10 @@
   "license": "MIT",
   "bin": {
     "md-links": "lib/view.functions/cli.js"
+  },
+  "repository":{
+    "type": "git",
+    "url": "git+https://github.com/maliciacanv/LIM008-fe-md-links.git"
   },
   "scripts": {
     "build": "babel src -d lib",

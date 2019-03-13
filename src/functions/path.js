@@ -28,7 +28,7 @@ export const convertPathAabsolute = (route) => {
  * @returns {boleano, true si es verdadero y false si es falso}
  */
 export const isAdirectory = (route) => {
-  const pathIsDirectory = fs.statSync(route).isDirectory();
+  const pathIsDirectory = fs.lstatSync(route).isDirectory();
   return pathIsDirectory;
 };
 

@@ -69,8 +69,8 @@ const arrObjLinks = [
     text: '<code>course-parser</code>',
     file:
     `${__dirname}\\testdeprueba\\prueba2\\archivo4.md`,
-    status: '',
-    statusText: 'Not Fail' },
+    status: '', 
+    statusText: 'Not Link' },
   { href: 'https://es.wikipedia.org/wiki/Markdown',
     text: 'MarkdownMarkdownMarkdownMarkdownMarkdownMarkdownMa',
     file:
@@ -80,12 +80,13 @@ const arrObjLinks = [
 
 
 describe('validateLink', () => {
-  it('deberia retornar una promesa array de objetos con todos los liks validados con propiedades haref,file,text,status,statusText', () => {
+  it('deberia retornar una promesa array de objetos con todos los liks validados con propiedades haref,file,text,status,statusText', (done) => {
     return validateLink(links)
       .then(res => { 
-        expect(validateLink).toEqual(res);
+        expect(arrObjLinks).toEqual(res);
+        done();
       })
-      .catch((err) => (err));
+      .catch((err) => err);
   });
 });
 

@@ -3,11 +3,11 @@ import { arrRoutesMd, extrackLinks } from '../functions/arr.js';
 import { validateLink} from '../functions/options.js';
 
 export const mdLinks = (route, option) => { 
-  return new Promise((resolve) => {              
+  return new Promise((resolve, reject) => {              
     let rutaAbsoluta;
     if (isPathAbsolute(route) === false) {
       rutaAbsoluta = convertPathAabsolute(route);  
-    } 
+    }
     const arrFiles = openAdirectory(route);
     const arrMd = arrRoutesMd(arrFiles);
     const arrLinks = extrackLinks(arrMd);

@@ -23,16 +23,18 @@ if (!route) {
 } else { 
   mdLinks(route, option)
     .then(arrLinks => { 
-      if (option.validate && option.stats) {
+      if (arrLinks.length === 0) {
+        console.log('Este archivo no tiene links que mostrar');
+      } else if (option.validate && option.stats) {
         console.log(`Total: ${totalLinks(arrLinks)} \nUnique: ${uniqueLinks(arrLinks)}  \nBroquen: ${brokenLinks(arrLinks)}`);
       } else if (option.stats) {
         console.log(`Total: ${totalLinks(arrLinks)}  \nUnique: ${uniqueLinks(arrLinks)}`);
       } else if (option.validate) {
         arrLinks.forEach(element => 
-          console.log(`${element.file} ${element.href} ${element.status} ${element.statusText} ${element.text}`));
+          console.log(`${element.file}  ${element.href}  ${element.status}  ${element.statusText}  ${element.text}`));
       } else {
         arrLinks.forEach(element => 
-          console.log(`${element.file} ${element.href} ${element.text}`));
+          console.log(`${element.file}  ${element.href}  ${element.text}`));
       }
     }).catch(err => (err));
 };

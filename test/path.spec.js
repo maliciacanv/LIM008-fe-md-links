@@ -54,11 +54,11 @@ describe('openAdirectory', () => {
   it('deberia ser una funcion', () => {
     expect(typeof openAdirectory).toBe('function');
   });
-  // it('si isAdirectory es true devuelve un array con las rutas', () => {
-  //   expect(openAdirectory(`${__dirname}`)).toEqual(arrFile);
-  // });
   it('si isAdirectory es true devuelve un array con las rutas', () => {
     expect(openAdirectory(`${__dirname}`)).toEqual(arrRoutesFile);
+  });
+  it('si isAdirectory es true devuelve un array con las rutas', () => {
+    expect(openAdirectory(`${__filename}`)).toEqual([`${__filename}`]);
   });
 });
 
