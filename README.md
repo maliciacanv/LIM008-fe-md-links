@@ -14,7 +14,7 @@ la información que se quiere compartir.
 
 ### Flujograma de la librería
 
-![Flujo](imagenFlujograma/flujoGrama-Markdown.PNG)
+![Flujo](imgFlujograma/flujoGrama-Markdown.PNG)
 
 #### Un board con el backlog para la implementación de la librería.
 
@@ -79,6 +79,12 @@ Módulo instalable via `npm install <github-user>/md-links`. Este módulo debe
 incluir tanto un ejecutable como una interfaz que podamos importar con `require`
 para usarlo programáticamente.
 
+###### Instalación
+ejemplo:
+
+```sh
+npm install maliciacanv/LIM008-fe-md-links md-links
+```
 
 
 
