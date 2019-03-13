@@ -14,7 +14,7 @@ la información que se quiere compartir.
 
 ### Flujograma de la librería
 
-![Flujo](imgFlujograma/flujoGrama-Markdown.PNG)
+![Flujo](imgFlujograma/flujoGrama-Markdow.PNG)
 
 #### Un board con el backlog para la implementación de la librería.
 
