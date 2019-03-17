@@ -1,54 +1,59 @@
 import {arrRoutesMd,
   extrackLinks } from '../src/functions/arr.js';
 
-const arrRoutes = [
-  `${__dirname}\\arr.spec.js`,
-  `${__dirname}\\options.spec.js`,
-  `${__dirname}\\path.spec.js`,
-  `${__dirname}\\testdeprueba\\archivo1.txt`,
-  `${__dirname}\\testdeprueba\\archivo2.txt`,
-  `${__dirname}\\testdeprueba\\archivo5.md`,
-  `${__dirname}\\testdeprueba\\prueba2\\archivo3.md`,
-  `${__dirname}\\testdeprueba\\prueba2\\archivo4.md`,
+const path = require('path');
+
+const arrRoutesFile = [
+  path.resolve(`${process.cwd()}\\test\\arr.spec.js`),
+  path.resolve(`${process.cwd()}\\test\\cli.spec.js`),
+  path.resolve(`${process.cwd()}\\test\\mdLinks.spec.js`),
+  path.resolve(`${process.cwd()}\\test\\options.spec.js`),
+  path.resolve(`${process.cwd()}\\test\\path.spec.js`),
+  path.resolve(`${process.cwd()}\\test\\testdeprueba\\archivo1.txt`),
+  path.resolve(`${process.cwd()}\\test\\testdeprueba\\archivo2.txt`),
+  path.resolve(`${process.cwd()}\\test\\testdeprueba\\archivo5.Md`),
+  path.resolve(`${process.cwd()}\\test\\testdeprueba\\prueba2\\archivo3.md`),
+  path.resolve(`${process.cwd()}\\test\\testdeprueba\\prueba2\\archivo4.md`),
 ];
 
+
 const arrFilterMd = [
-  `${__dirname}\\testdeprueba\\archivo5.md`,
-  `${__dirname}\\testdeprueba\\prueba2\\archivo3.md`,
-  `${__dirname}\\testdeprueba\\prueba2\\archivo4.md`,
+  path.resolve(`${process.cwd()}\\test\\testdeprueba\\archivo5.Md`),
+  path.resolve(`${process.cwd()}\\test\\testdeprueba\\prueba2\\archivo3.md`),
+  path.resolve(`${process.cwd()}\\test\\testdeprueba\\prueba2\\archivo4.md`),
 ];
 
 const link = [
   { href: 'https://github.com/markdown-it/markdown-it',
     text: 'markdown-it',
     file:
-      `${__dirname}\\testdeprueba\\archivo5.md`},
+    path.resolve(`${process.cwd()}\\test\\testdeprueba\\archivo5.Md`)},
   { href:
        'https://developer.mozilla.org/es/docs/Web/JavaScript/Guideeee/Regular_Expressions',
   text: 'expresiones regulares (<code>RegExp</code>)',
   file:
-      `${__dirname}\\testdeprueba\\archivo5.md`},
+  path.resolve(`${process.cwd()}\\test\\testdeprueba\\archivo5.Md`)},
   { href: 'https://es.wikipedia.org/wiki/Markdown',
     text: 'MarkdownMarkdownMarkdownMarkdownMarkdownMarkdownMa',
     file:
-      `${__dirname}\\testdeprueba\\prueba2\\archivo3.md`},
+    path.resolve(`${process.cwd()}\\test\\testdeprueba\\prueba2\\archivo3.md`)},
   { href: 'https://es.wikipedia.org/wiki/Markdown',
     text: 'MarkdownMarkdownMarkdownMarkdownMarkdownMarkdownMa',
     file:
-         `${__dirname}\\testdeprueba\\prueba2\\archivo3.md`},
+    path.resolve(`${process.cwd()}\\test\\testdeprueba\\prueba2\\archivo3.md`)},
    
   { href: 'https://docs.npmjs.com/cli/install',
     text: 'docs oficiales de <code>npm install</code> acá',
     file:
-      `${__dirname}\\testdeprueba\\prueba2\\archivo4.md`},
+    path.resolve(`${process.cwd()}\\test\\testdeprueba\\prueba2\\archivo4.md`)},
   { href: 'https://giithub.com/Laboratoria/course--parser',
     text: '<code>course-parser</code>',
     file:
-      `${__dirname}\\testdeprueba\\prueba2\\archivo4.md`},
+    path.resolve(`${process.cwd()}\\test\\testdeprueba\\prueba2\\archivo4.md`)},
   { href: 'https://es.wikipedia.org/wiki/Markdown',
     text: 'MarkdownMarkdownMarkdownMarkdownMarkdownMarkdownMa',
     file:
-         `${__dirname}\\testdeprueba\\prueba2\\archivo4.md`}
+    path.resolve(`${process.cwd()}\\test\\testdeprueba\\prueba2\\archivo4.md`)},
 ];
 
 
@@ -57,7 +62,7 @@ describe('arrRoutesMd', () => {
     expect(typeof arrRoutesMd).toBe('function');
   });
   it('debe retornar un array filtrado con las rutas .md', () => {
-    return expect(arrRoutesMd(arrRoutes)).toEqual(arrFilterMd);
+    return expect(arrRoutesMd(arrRoutesFile)).toEqual(arrFilterMd);
   });
 });
 

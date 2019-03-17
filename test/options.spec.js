@@ -1,32 +1,34 @@
 import { validateLink, uniqueLinks, totalLinks, brokenLinks } from '../src/functions/options.js';
 
+const path = require('path');
+
 const links = [
   { href: 'https://github.com/markdown-it/markdown-it',
     text: 'markdown-it',
     file:
-    `${__dirname}\\testdeprueba\\archivo5.md`},
+    path.resolve(`${process.cwd()}\\test\\testdeprueba\\archivo5.Md`)},
   { href:
        'https://developer.mozilla.org/es/docs/Web/JavaScript/Guideeee/Regular_Expressions',
   text: 'expresiones regulares (<code>RegExp</code>)',
   file:
-      `${__dirname}\\testdeprueba\\archivo5.md`},
+  path.resolve(`${process.cwd()}\\test\\testdeprueba\\archivo5.Md`)},
   { href: 'https://es.wikipedia.org/wiki/Markdown',
     text: 'MarkdownMarkdownMarkdownMarkdownMarkdownMarkdownMa',
     file:
-      `${__dirname}\\testdeprueba\\prueba2\\archivo3.md`},
+    path.resolve(`${process.cwd()}\\test\\testdeprueba\\prueba2\\archivo3.md`)},
   { href: 'https://es.wikipedia.org/wiki/Markdown',
     text: 'MarkdownMarkdownMarkdownMarkdownMarkdownMarkdownMa',
     file:
-         `${__dirname}\\testdeprueba\\prueba2\\archivo3.md`},
+    path.resolve(`${process.cwd()}\\test\\testdeprueba\\prueba2\\archivo3.md`)},
    
   { href: 'https://docs.npmjs.com/cli/install',
     text: 'docs oficiales de <code>npm install</code> acá',
     file:
-      `${__dirname}\\testdeprueba\\prueba2\\archivo4.md`},
+    path.resolve(`${process.cwd()}\\test\\testdeprueba\\prueba2\\archivo4.md`)},
   { href: 'https://giithub.com/Laboratoria/course--parser',
     text: '<code>course-parser</code>',
     file:
-      `${__dirname}\\testdeprueba\\prueba2\\archivo4.md`},
+    path.resolve(`${process.cwd()}\\test\\testdeprueba\\prueba2\\archivo4.md`)},
   { href: 'https://es.wikipedia.org/wiki/Markdown',
     text: 'MarkdownMarkdownMarkdownMarkdownMarkdownMarkdownMa',
     file:
@@ -37,56 +39,62 @@ const arrObjLinks = [
   { href: 'https://github.com/markdown-it/markdown-it',
     text: 'markdown-it',
     file:
-    `${__dirname}\\testdeprueba\\archivo5.md`,
+        path.resolve(`${process.cwd()}\\test\\testdeprueba\\archivo5.Md`),
     status: 200,
     statusText: 'OK' },
   { href:
-     'https://developer.mozilla.org/es/docs/Web/JavaScript/Guideeee/Regular_Expressions',
+         'https://developer.mozilla.org/es/docs/Web/JavaScript/Guideeee/Regular_Expressions',
   text: 'expresiones regulares (<code>RegExp</code>)',
   file:
-    `${__dirname}\\testdeprueba\\archivo5.md`,
+      path.resolve(`${process.cwd()}\\test\\testdeprueba\\archivo5.Md`),
   status: 'Not Found',
-  statusText: 'Not Fail' },
+  statusText: 'Fail' },
   { href: 'https://es.wikipedia.org/wiki/Markdown',
     text: 'MarkdownMarkdownMarkdownMarkdownMarkdownMarkdownMa',
     file:
-    `${__dirname}\\testdeprueba\\prueba2\\archivo3.md`,
+        path.resolve(`${process.cwd()}\\test\\testdeprueba\\prueba2\\archivo3.md`),
     status: 200,
     statusText: 'OK' },
   { href: 'https://es.wikipedia.org/wiki/Markdown',
     text: 'MarkdownMarkdownMarkdownMarkdownMarkdownMarkdownMa',
     file:
-    `${__dirname}\\testdeprueba\\prueba2\\archivo3.md`,
+        path.resolve(`${process.cwd()}\\test\\testdeprueba\\prueba2\\archivo3.md`),
     status: 200,
     statusText: 'OK' },
   { href: 'https://docs.npmjs.com/cli/install',
     text: 'docs oficiales de <code>npm install</code> acá',
     file:
-    `${__dirname}\\testdeprueba\\prueba2\\archivo4.md`,
+        path.resolve(`${process.cwd()}\\test\\testdeprueba\\prueba2\\archivo4.md`),
     status: 200,
     statusText: 'OK' },
   { href: 'https://giithub.com/Laboratoria/course--parser',
     text: '<code>course-parser</code>',
     file:
-    `${__dirname}\\testdeprueba\\prueba2\\archivo4.md`,
+        path.resolve(`${process.cwd()}\\test\\testdeprueba\\prueba2\\archivo4.md`),
     status: '', 
-    statusText: 'Not Link' },
+    statusText: 'Not exist'},
   { href: 'https://es.wikipedia.org/wiki/Markdown',
     text: 'MarkdownMarkdownMarkdownMarkdownMarkdownMarkdownMa',
     file:
-    `${__dirname}\\testdeprueba\\prueba2\\archivo4.md`,
+        path.resolve(`${process.cwd()}\\test\\testdeprueba\\prueba2\\archivo4.md`),
     status: 200,
     statusText: 'OK' }];
 
 
 describe('validateLink', () => {
+  it('deberia ser una función', () => {
+    expect(typeof validateLink).toEqual('function');
+  });
+  it('el imput no debe ser una array', () => {
+    return validateLink([])
+      .catch(err => err);
+  });
   it('deberia retornar una promesa array de objetos con todos los liks validados con propiedades haref,file,text,status,statusText', (done) => {
     return validateLink(links)
-      .then(res => { 
-        expect(arrObjLinks).toEqual(res);
-        done();
-      })
-      .catch((err) => err);
+      .then(response => {
+        expect(response).toBe(arrObjLinks);
+        donde();
+      }).catch(() => done());
   });
 });
 

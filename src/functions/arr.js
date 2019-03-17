@@ -10,7 +10,7 @@ const myMarked = require('marked');
 export const arrRoutesMd = (route) => {
   const newArray = [];
   route.forEach((element) => {
-    if (path.extname(element) === '.md') {
+    if (path.extname(element).toLowerCase() === '.md') {
       return newArray.push(element);
     }
   });

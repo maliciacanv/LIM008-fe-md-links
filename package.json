@@ -12,7 +12,7 @@
   "bin": {
     "md-links": "lib/view.functions/cli.js"
   },
-  "repository":{
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/maliciacanv/LIM008-fe-md-links.git"
   },
@@ -31,6 +31,7 @@
     "babel-jest": "^24.1.0",
     "eslint": "^5.10.0",
     "eslint-plugin-jest": "^22.1.2",
+    "fetch-mock": "^7.3.1",
     "jest": "^24.1.0",
     "regenerator-runtime": "^0.13.1"
   },

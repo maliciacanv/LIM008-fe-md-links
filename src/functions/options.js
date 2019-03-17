@@ -6,22 +6,26 @@ const fetch = require('node-fetch');
  */
 export const validateLink = (arr) => {
   const linkValidate = arr.map(links => new Promise((resolve, reject) => {
-    return fetch(links.href)                                       
-      .then(response => {
-        if (response.status >= 200 && response.status < 400) {
-          links.status = response.status;
-          links.statusText = response.statusText;
-          resolve(links); 
-        } else {
-          links.status = response.statusText;
-          links.statusText = 'Not Fail';
+    if (!arr === []) { 
+      reject(arr);
+    } else {
+      return fetch(links.href)                                       
+        .then(response => { 
+          if (response.status >= 200 && response.status < 400) {
+            links.status = response.status;
+            links.statusText = response.statusText;
+            resolve(links); 
+          } else {
+            links.status = 'Not Found';
+            links.statusText = 'Fail';
+            resolve(links);
+          }
+        }).catch((err) => { 
+          links.status = '',
+          links.statusText = 'Not exist',
           resolve(links);
-        }
-      }).catch(() => { 
-        links.status = '';
-        links.statusText = 'Not Link';
-        resolve(links);
-      });
+        });
+    }
   }));
   return Promise.all(linkValidate);
 };
