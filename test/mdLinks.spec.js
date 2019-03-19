@@ -86,17 +86,34 @@ const option = {
   validate: false,
 };
 
+const fetchMock = require('../__mocks__/node-fetch.js');
+
+fetchMock.config.sendAsJson = true;
+fetchMock.config.fallbackToNetwork = false;
+
+
 describe('mdLinks', () => {
   it('debería ser una función', () => {
-    return mdLinks('')
-      .catch((err) => (err));
+    expect(typeof mdLinks).toEqual('function');
+  });
+  it('si el input recibe undefind es reject y cae en catch', () => {
+    return mdLinks(undefined, {})
+      .catch((err) => { 
+        expect(err).toEqual(undefined);
+      });
   });
   it('debe retornar una promesa con el array de objetos de links validados', () => {
-    return mdLinks(path.resolve(`${process.cwd()}\\test`), {validate: true})
+    fetchMock
+      .get('https://github.com/markdown-it/markdown-it', {status: 200, statusText: 'OK'})
+      .get('https://developer.mozilla.org/es/docs/Web/JavaScript/Guideeee/Regular_Expressions', {status: '', statusText: 'Fail'})
+      .get('https://docs.npmjs.com/cli/install', {status: 200, statusText: 'OK'})
+      .get('https://giithub.com/Laboratoria/course--parser', {status: '', statusText: 'Not exist'})
+      .get('https://es.wikipedia.org/wiki/Markdown', {status: 200, statusText: 'OK'});
+    
+    mdLinks(path.resolve(`${process.cwd()}\\test`), {validate: true})
       .then(() => {
         expect(validateLink(links)).toEqual(arrObjLinks);
       }).catch((err) => (err));
-
   });
   it('debe retornar una promesa con el array de objetos de links', () => {
     return mdLinks('test', {})

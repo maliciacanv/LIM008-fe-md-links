@@ -4,7 +4,7 @@ import { validateLink} from '../functions/options.js';
 
 export const mdLinks = (route, option) => { 
   return new Promise((resolve, reject) => {  
-    if (route === '') {
+    if (route === undefined) {
       reject(route);
     }          
     let rutaAbsoluta = route;

@@ -47,7 +47,7 @@ const arrObjLinks = [
   text: 'expresiones regulares (<code>RegExp</code>)',
   file:
       path.resolve(`${process.cwd()}\\test\\testdeprueba\\archivo5.Md`),
-  status: 'Not Found',
+  status: 404,
   statusText: 'Fail' },
   { href: 'https://es.wikipedia.org/wiki/Markdown',
     text: 'MarkdownMarkdownMarkdownMarkdownMarkdownMarkdownMa',
@@ -71,7 +71,7 @@ const arrObjLinks = [
     text: '<code>course-parser</code>',
     file:
         path.resolve(`${process.cwd()}\\test\\testdeprueba\\prueba2\\archivo4.md`),
-    status: '', 
+    status: 'Not exist', 
     statusText: 'Not exist'},
   { href: 'https://es.wikipedia.org/wiki/Markdown',
     text: 'MarkdownMarkdownMarkdownMarkdownMarkdownMarkdownMa',
@@ -80,21 +80,41 @@ const arrObjLinks = [
     status: 200,
     statusText: 'OK' }];
 
+const fetchMock = require('../__mocks__/node-fetch.js');
+
+fetchMock.config.sendAsJson = true;
+fetchMock.config.fallbackToNetwork = false;
 
 describe('validateLink', () => {
   it('deberia ser una función', () => {
     expect(typeof validateLink).toEqual('function');
   });
-  it('el imput no debe ser una array', () => {
-    return validateLink([])
-      .catch(err => err);
-  });
-  it('deberia retornar una promesa array de objetos con todos los liks validados con propiedades haref,file,text,status,statusText', (done) => {
-    return validateLink(links)
-      .then(response => {
-        expect(response).toBe(arrObjLinks);
-        donde();
-      }).catch(() => done());
+  // it('el imput que ingresa no debe ser una array', () => {
+  //   return validateLink(links)
+  //     .catch((err) => { 
+  //       expect(err).toEqual('');
+  //     });
+  // });
+});
+describe('validateLink', () => {
+  it('deberia retornar una promesa array de objetos con todos los liks validados con propiedades haref,file,text,status,statusText', () => {
+    fetchMock
+      .get('https://github.com/markdown-it/markdown-it', {status: 200, statusText: 'OK'})
+      .get('https://developer.mozilla.org/es/docs/Web/JavaScript/Guideeee/Regular_Expressions', {status: 404},
+        new Promise((resolve, reject) => {
+          resolve();
+        }))
+      .get('https://docs.npmjs.com/cli/install', {status: 200, statusText: 'OK'})
+      .get('https://giithub.com/Laboratoria/course--parser', {status: 'Not exist'}, 
+        new Promise((resolve, reject) => {
+          resolve();
+        }))
+      .get('https://es.wikipedia.org/wiki/Markdown', {status: 200, statusText: 'OK'});
+
+    validateLink(links)
+      .then(response => { 
+        expect(response).toEqual(arrObjLinks);
+      });
   });
 });
 

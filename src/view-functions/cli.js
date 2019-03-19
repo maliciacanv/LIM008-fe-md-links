@@ -38,7 +38,7 @@ export const userCli = (route) => {
           arrLinks.forEach(element => 
             console.log(`${element.file}  ${element.href}  ${element.text}`));
         }
-      }).catch(err => err)
+      }).catch(err => err);
   }
 };
 userCli();
